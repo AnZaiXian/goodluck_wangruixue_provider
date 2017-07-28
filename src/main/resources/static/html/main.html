@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, swaggerUser-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../ztree/zTreeStyle.css">
+    <script src="../js/jquery-2.1.4.js"></script>
+    <script src="../js/jquery.ztree.core.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+          //  alert("ppppp");
+            var setting ={
+                data:{
+                    simpleData:{
+                        enable:true,
+                        idKey:"id",
+                        pIdKey:"tid"
+                    }
+
+                }
+            };
+
+            $.ajax({
+                type:"POST",
+                url:"../showTree",
+                success:function(json){
+                   // alert("xxxxxxxx");
+                  //  alert(json);
+                    //注意将ztree用$("#simpleTree")表示,不用加双引号
+
+                    $.fn.zTree.init($("#simpleTree"),setting,json);
+                }
+            });
+        });
+
+    </script>
+    <style>
+        body{
+            background-image: url("../ztree/img/2.png");
+            background-repeat: no-repeat;
+            background-size: 400px 600px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+<!--创建一个树-->
+
+   <ul id="simpleTree" class="ztree"></ul>
+
+
+</body>
+</html>

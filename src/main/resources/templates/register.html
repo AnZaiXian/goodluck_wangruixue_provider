@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en" xmlns:margin="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, swaggerUser-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body background="../ztree/img/2.png">
+
+<div style="margin-top: 150px">
+    <center>
+        <h2><font color="#00ff7f"></font>注册页面</h2>
+        <h2></h2>
+    </center>
+    <!--enctype="multipart/form-data" name="upload_form"-->
+    <form class="form-horizontal" role="form" action="jm"
+          method="post" >
+
+       <div class="form-group">
+            <label for="firstname2" class="col-sm-4 control-label">用户名:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="firstname2"
+                       placeholder="请输入用户名" name="name">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="firstname" class="col-sm-4 control-label">密码:</label>
+            <div class="col-sm-4">
+                <input type="text" class="form-control" id="firstname"
+                       placeholder="请输入密码" name="pwd">
+            </div>
+        </div>
+        <br>
+        <div class="form-group">
+            <label for="lastname" class="col-sm-4 control-label">年龄:</label>
+            <div class="col-sm-4" id="lastname">
+                <select name="age">
+                    <option value="18">18</option>
+                    <option value="19">19</option>
+                    <option value="20">20</option>
+                    <option value="21">21</option>
+                    <option value="22">22</option>
+                </select>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label  class="col-sm-4 control-label">性别:</label>
+            <div class="col-sm-4">
+                <input type="radio" checked="checked" name="sex" value="男" />男
+                <input type="radio" checked="checked" name="sex" value="女" />女
+            </div>
+        </div>
+
+
+       <!-- <div class="form-group">
+            <label  class="col-sm-4 control-label">头像:</label>
+            <div class="col-sm-4">
+                <input name="path" type="file" accept="image/gif, image/jpeg"/>
+            </div>
+        </div>-->
+
+        <div class="form-group">
+            <label  class="col-sm-4 control-label">爱好:</label>
+            <div class="col-sm-4">
+                <input name="hobby"  type="checkbox" value="看书"/>看书
+                <input name="hobby"  type="checkbox" value="打球"/>打球
+                <input name="hobby"  type="checkbox" value="唱歌"/>唱歌
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <center>
+                    <button type="submit" class="btn btn-default">&nbsp;&nbsp;注册&nbsp;&nbsp;</button>&nbsp;&nbsp;
+                    &nbsp;&nbsp;<a type="button" class="btn btn-default" href="../html/login.html">&nbsp;&nbsp;直接登录</a>
+                    <!--<button type="submit" class="btn btn-default">&nbsp;&nbsp;登录</button>-->
+                </center>
+
+            </div>
+        </div>
+    </form>
+
+</div>
+
+
+
+</body>
+</html>

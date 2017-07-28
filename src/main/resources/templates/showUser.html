@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="../css/bootstrap.css">
+    <link href="css/select.css" rel="stylesheet" />
+
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!--<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>-->
+    <script src="js/jquery-2.1.4.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+    <script>
+
+        //修改回显
+        function huixian(user){
+
+            //获取回显的id
+            var id = user.id;
+            alert("回显的id为:"+id);
+            //通过ajax方法来
+            $.ajax({
+                type:"POST",
+                data:{"id":id},
+                url:"../hxEmployee",
+                success:function(s){
+
+                    $("#id").val(s.id);
+                    $("#nc").val(s.name);
+                    $("#ss").val(s.pwd);
+
+                }
+            });
+        }
+
+    </script>
+
+
+</head>
+<body>
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th align="center">用户编号</th>
+        <th align="center">用户名</th>
+        <th align="center">密码</th>
+        <th align="center">年龄</th>
+        <th align="center">性别</th>
+        <th align="center">爱好</th>
+        <th align="center">删除</th>
+        <th align="center">修改</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="f:${list}">
+        <td  th:text="${f.id}">1</td>
+        <td  th:text="${f.name}">1</td>
+        <td th:text="${f.pwd}">1</td>
+        <td th:text="${f.age}">1</td>
+        <td th:text="${f.sex}">1</td>
+        <td  th:text="${f.hobby}">1</td>
+
+        <td >
+            <a  href="show.html" th:href="@{/deleteUser(id=${f.id})}"
+                type="button" class="btn btn-info btn-sm">
+                <span class="glyphicon glyphicon-trash"></span> Trash
+            </a>
+        </td>
+
+        <td >
+            <button type="button" class="btn btn-info btn-sm"  th:id="${f.id}" onclick="huixian(this)"
+                    data-toggle="modal" data-target="#myModal">
+                <span class="glyphicon glyphicon-list-alt"></span> Update
+            </button>
+
+        </td>
+
+    </tr>
+    </tbody>
+</table>
+
+<!--*************************************修改=模态框********************************-->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    就是这么任性!!!
+                </h4>
+            </div>
+
+            <div class="modal-body">
+
+                <form class="form-horizontal" role="form" action="updateUser" method="post" id="form1">
+
+                    <div class="form-group">
+                        <label for="id" class="col-sm-4 control-label"></label>
+                        <div class="col-sm-4">
+                            <input type="hidden" class="form-control" id="id"
+                                   name="id">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nc" class="col-sm-4 control-label">用户名:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="nc"
+                                   name="name">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ss" class="col-sm-4 control-label">密码:</label>
+                        <div class="col-sm-4">
+                            <input type="text" class="form-control" id="ss"
+                                   name="pwd">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-4 control-label">年龄:</label>
+                        <div class="col-sm-4">
+                            <select name="age">
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20</option>
+                                <option value="21">21</option>
+                                <option value="22">22</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-4 control-label">性别:</label>
+                        <div class="col-sm-4">
+                            <input type="radio" checked="checked" name="sex" value="男" />男
+                            <input type="radio" checked="checked" name="sex" value="女" />女
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label  class="col-sm-4 control-label">爱好:</label>
+                        <div class="col-sm-4">
+                            <input name="hobby"  type="checkbox" value="看书"/>看书
+                            <input name="hobby"  type="checkbox" value="打球"/>打球
+                            <input name="hobby"  type="checkbox" value="唱歌"/>唱歌
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-4 col-sm-4">
+                            <!-- <button type="submit" class="btn btn-default">登录</button>-->
+                            <button type="button" class="btn btn-primary" data-dismiss="modal">
+                                <span class="glyphicon glyphicon-share"></span> Return
+                            </button>
+                            <button type="submit" class="btn btn-primary">
+                                <span class="glyphicon glyphicon-check"></span> OK
+                            </button>
+
+                        </div>
+                    </div>
+                </form>
+
+            </div>
+
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+</body>
+</html>
