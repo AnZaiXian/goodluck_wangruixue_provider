@@ -2,7 +2,6 @@ package com.bw.wangruixue.controller;
 
 import com.bw.wangruixue.entity.GoodluckUser;
 import com.bw.wangruixue.repository.UserRepository;
-import com.bw.wangruixue.util.ExcelUtil;
 import com.bw.wangruixue.util.MD5Util;
 import org.apache.poi.hssf.model.Workbook;
 //import org.apache.poi.ss.usermodel.Workbook;

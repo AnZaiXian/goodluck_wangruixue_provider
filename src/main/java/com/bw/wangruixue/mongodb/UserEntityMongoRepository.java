@@ -1,6 +1,6 @@
 package com.bw.wangruixue.mongodb;
 
-import com.bw.entity.EntityUser;
+import com.bw.wangruixue.entity.GoodluckUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -23,16 +23,16 @@ public class UserEntityMongoRepository {
      * 创建对象
      *
      */
-    public void saveUser(EntityUser user){
+    public void saveUser(GoodluckUser user){
         mongoTemplate.save(user);
     }
 
     /**
      * 根据用户名查询对象
      */
-    public EntityUser findUserByUserNamae(String userName){
+    public GoodluckUser findUserByUserNamae(String userName){
         Query query = new Query(Criteria.where("userName").is(userName));
-        EntityUser user =  mongoTemplate.findOne(query , EntityUser.class);
+        GoodluckUser user =  mongoTemplate.findOne(query , GoodluckUser.class);
         return user;
 
     }
@@ -40,11 +40,11 @@ public class UserEntityMongoRepository {
     /**
      * 跟新对象
      */
-    public void updateUser(EntityUser user){
+    public void updateUser(GoodluckUser user){
         Query query = new Query(Criteria.where("id").is(user.getId()));
-        Update update = new Update().set("userName",user.getUserName()).set("passWord",user.getPassWord());
+        Update update = new Update().set("userName",user.getName()).set("passWord",user.getPwd());
         //更新查询返回结果集的第一条
-        mongoTemplate.updateFirst(query,update,EntityUser.class);
+        mongoTemplate.updateFirst(query,update,GoodluckUser.class);
 
     }
 
@@ -53,7 +53,7 @@ public class UserEntityMongoRepository {
      */
     public void deleteUserById(Long id){
         Query query = new Query(Criteria.where("id").is(id));
-        mongoTemplate.remove(query,EntityUser.class);
+        mongoTemplate.remove(query,GoodluckUser.class);
     }
 
 }
